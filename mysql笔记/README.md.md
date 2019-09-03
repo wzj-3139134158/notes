@@ -1,15 +1,25 @@
-#  Mysql基础
-### 1.查看数据库
+# Mysql基础
+
+## 1.查看数据库
+
         show databases;
+
 ### 2.创建数据库
+
        create database 数据库名称(随意起名);
+
 ### 3.删除数据库
+
         drop database 数据库名称;
+
 ### 4.访问进入数据库
+
         use 数据库名称,(返回Database changed,说明进入成功)
 
 ___
+
 ## 报错纠正
+
     1.ERROR 1007 (HY000): Can't create database 'demo'; database exists
       当前名称得数据库已经存在，创建数据库失败。
     2.ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use ***near 'database' at line 1***
@@ -22,48 +32,77 @@ ___
       插入的数据过长
 
 ___
+
 ## Mysql表的操作
+
 ### 表的别名
+
         别名 直接写 中文用引号
         select concat(ename,'的工资是',sal) saltable  from emp;
+
 ### 1.查看数据都有哪些表
+
         show tables;
+
 ### 2.创建一张数据库得表
+
         create table 表名(字段名称 字段的类型,字段名称 字段类型····)
+
 ### 3.查看表中所有数据
+
         select*from 表名;
+
 ### 4.如何查看一个表的结构
+
         desc 表名;
+
 ### 5.删除表
+
         drop table 表名;
+
 ### 6.对表数据进行增删改查
+
         增：alter table 表名 add 字段名称 字段类型；
         删：alter table 表名 drop 字段名称 ;
         改：alter table 表名 modify 字段名称 字段类型;
         查：desc 表名;
+
 ### 7.修改字段名
+
         alter table 表名 change 字段名称 新字段名称 字段属性
+
 ### 8.修改表名
+
         alter table 要修改的表名 rename AS 新表名;
+
 ### 7.不允许为空
+
         ERROR 1048 (23000): Column 'num' cannot be null
 
 ___
+
 ## 向表中插入数据
+
         insert into 表名(想插入的字段名称...) values(想插入的字段的值)
         insert into 表名 values(表中所有字段的值)
 ___
+
 ## 删除的sql中的数据
+
         1.清空表
             delete from 表名;
         2.删除哪几条记录
             delete from 表名 where 字段名='第几个';
 ___
+
 ## 修改表中的数据
+
         1.全部修改
             update 表名 set 字段名=新的字段值,(逗号隔开)··· where 字段名='第几个';
 ___
+
 ## 约束
+
     1.唯一约束
         unique
     2.非空约束
@@ -74,13 +113,17 @@ ___
         primary key
     5.自动增长策略
         primary key auto_increment
+
 ### mysql中的外键必须是另一个主键
 
 ```非空约束和唯一约束的一个组合我们称之为主键约束```
 
 ___
+
 ## Mysql查询
-        select*from 表名 -查询出该表中的所有数据
+
+        select*from 表名 -查询出该表中的所有数据 
+
 * 了解查询语句的格式
 
         select[字段列表，表达式，函数]from 表名
@@ -95,9 +138,11 @@ ___
         emp
         dept
         salgrade
-    
+
 ___
+
 ## mysql查询表
+
 > select基本查询
 
     查询字段里所有东西
@@ -109,7 +154,7 @@ ___
      select 表达式[算术表达式(加减乘除)] from 表名
     去重   
      select distinct 字段名 from 表名;
-        
+
 > where条件表达式
 
     等值比较
@@ -126,7 +171,7 @@ ___
      不等于
         select * from 表名 where 字段名 <> 数值;
 > 多个条件查询
-        
+
       并且 and
         如：select * from 表名 where 字段名 > 数值 and 字段名 <= 数值;  
       或者 or
@@ -147,7 +192,9 @@ ___
       判断一个数值不为空需要用到关键字is not
         如：select * from 表名 where 字段名 is not null;
 ___
+
 ## Mysql函数
+
      常用数学函数
         1.圆周率函数
           select pi() from 表名;
@@ -205,11 +252,14 @@ ___
         8.返回datetime的时间值
          select TIME(字段日期名) from 表名;
 ___
+
 ### 分组函数
+
         select avg(字段名) from 表名 group by字段名
          group表示查询组,by表示查询哪个组
 
 ### 子查询情况
+
 > 1.子查询就是一个查询的结果可以作为另一个查询的数据源或者条件
 
        select max(sal)from emp;
@@ -217,11 +267,9 @@ ___
        select ename , sal from emp where sal = (select max(sal)from emp);
 
 > 2.组函数不可以嵌套，我们的查询结果作为另一个查询的数据源 当成一个表，当表的过程必须起别名。
-         
-         
+
 <!--插入图片-->
 <!-- ![baidu](http://www.baidu.com/img/bdlogo.gif "百度logo")   -->
 
 <!-- 插入链接 -->
 <!-- [我的博客](http://blog.csdn.net/guodongxiaren "悬停显示")   -->
-            
